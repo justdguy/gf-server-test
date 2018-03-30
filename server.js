@@ -8,8 +8,18 @@ const config = require('./config');
 
 const app = express();
 
+// this should be moved to environment
+const dbUser = "justdguy";
+const dbPassword = "Welcome3Infodat";
+
 // Only include useMongoClient only if your mongoose version is < 5.0.0
-mongoose.connect(config.database, {useMongoClient: true}, err => {
+mongoose.connect(config.database, {
+  useMongoClient: true,
+  auth: {
+    user: dbUser,
+    password: dbPassword
+  }
+}, err => {
   if (err) {
     console.log(err);
   } else {
