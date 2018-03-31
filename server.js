@@ -33,6 +33,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cors());
 
+// set express to serve all files from "client" folder
+app.use( express.static( __dirname + '/client' ));
+app.get( '/', function( req, res ) {
+  res.sendFile( path.join( __dirname, 'client', 'index.html' ));
+});
+
 const userRoutes = require('./routes/account');
 const mainRoutes = require('./routes/main');
 const postRoutes = require('./routes/postidea');
