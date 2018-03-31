@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const normalizePort = require('normalize-port');
 
 const config = require('./config');
 
@@ -39,8 +40,9 @@ const postRoutes = require('./routes/postidea');
 app.use('/api', mainRoutes);
 app.use('/api/accounts', userRoutes);
 app.use('/api/postidea', postRoutes);
+ 
+const port = normalizePort(process.env.PORT || config.port);
 
-
-app.listen(config.port, err => {
+app.listen(port, err => {
   console.log('Magic happens on port awesome ' + config.port);
 });
